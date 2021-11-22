@@ -1,18 +1,12 @@
 \documentclass[italian,a4paper,nologo]{europasscv}
+
 \usepackage[english]{babel}
 \usepackage{enumitem}
-
-\usepackage[backend=biber,autolang=hyphen,sorting=none,style=numeric,maxbibnames=99,doi=false,isbn=false,maxcitenames=2]{biblatex}
 \usepackage{csquotes}
-\usepackage{europasscv-bibliography}
 
 \newlist{inlinelist}{enumerate*}{1}
-%\setlist[inlinelist,1]{label=\Roman*.}
+\setlist[inlinelist,1]{label=\roman*)}
 \setenumerate[1]{itemsep=.5em}
-
-%\bibliography{europasscv_example}
-% in the bibliography, mark all occurrences in bold:
-\ecvbibhighlight{<Second Name>}{<First Name>}{<Char>}
 
 \ecvname{<Complete Name>}
 \ecvaddress{<Address>}
@@ -37,7 +31,7 @@
        \ecvitem{}{Istituto Tecnico Superiore J.F.Kennedy in Provincia di Pordenone (FVG)}
 
        \ecvtitlelevel{Sett. 2018--Giu. 2019}{Certificazione Cisco - IT Essentials}{CCNA}
-       \ecvitem{}{
+       \ecvitem{}{%
           \begin{ecvitemize}
                \item[\S] Funzionamento e l'installazione dei sistemi operativi (Linux e Windows);
                \item[\S] Configurazione hardware di un PC.
@@ -45,7 +39,7 @@
        }
 
        \ecvtitlelevel{Sett. 2019--Giu. 2020}{Certificazione Cisco - Introduction to Networks}{CCNA}
-       \ecvitem{}{
+       \ecvitem{}{%
           \begin{ecvitemize}
                \item[\S] Concetti teorici sul networking;
                \item[\S] Basi del sistema operativo di Cisco;
@@ -58,14 +52,14 @@
        }
 
        \ecvtitlelevel{Sett. 2019--Giu. 2020}{Certificazione Cisco - Introduction to Cybersecurity}{CCNA}
-       \ecvitem{}{
+       \ecvitem{}{%
           \begin{ecvitemize}
                \item[\S] Riconoscimento delle diverse tipologie di minacce per una rete di dispositivi.
           \end{ecvitemize}
        }
 
        \ecvtitlelevel{Sett. 2019--Giu. 2020}{Certificazione Cisco - Cybersecurity Essentials}{CCNA}
-       \ecvitem{}{
+       \ecvitem{}{%
           \begin{ecvitemize}
                \item[\S] Messa in sicurezza di una rete;
                \item[\S] Conoscenza generale sulle apparecchiature di sicurezza come IDS, IPS e Firewalls;
@@ -74,8 +68,8 @@
        }
 
        \ecvsection{Competenze Tecniche}
-       \ecvitem{\textcolor{ecvsectioncolor}{Conoscenza Approfondita}}{
-            \begin{inlinelist}(6)
+       \ecvitem{\textcolor{ecvsectioncolor}{Conoscenza Approfondita}}{%
+            \begin{inlinelist}
             \item Java
             \item C
             \item MySQL
@@ -84,7 +78,7 @@
             \item MarkDown
             \end{inlinelist}
        }
-       \ecvitem{\textcolor{ecvsectioncolor}{Conoscenza di Base}}{
+       \ecvitem{\textcolor{ecvsectioncolor}{Conoscenza di Base}}{%
             \begin{inlinelist}
             \item C++
             \item Golang
@@ -96,7 +90,7 @@
             \item LaTeX
             \end{inlinelist}
        }
-       \ecvitem{\textcolor{ecvsectioncolor}{Software di aiuto/sviluppo}}{
+       \ecvitem{\textcolor{ecvsectioncolor}{Software di aiuto/sviluppo}}{%
             \begin{inlinelist}
             \item Git
             \item Docker
@@ -110,13 +104,6 @@
        \ecvlanguage{Inglese}{C1}{B2}{C1}{B2}{B2}
        \ecvlanguagefooter
   
-
-
-  %\ecvblueitem{Altre competenze/Interessi}{Mi ritrovo spesso a sperimentare con diversi paradigmi e
-  %linguaggi di programmazione, con la quale creo vari programmi.
-  %Sono un utente GNU/Linux alla quale piace imparare nuove cose riguardanti
-  %l'informatica ogni giorno}
-
   \ecvblueitem{Patenti}{AM, B}
   
   \nocite{*}
