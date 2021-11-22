@@ -1,12 +1,16 @@
+RM = rm -rfv
 TEX = pdflatex
-DIR = bin/
+BIN = bin
+SRC = src
+
+VPATH = template:$(SRC)
 
 # Output files in bin/
-OUT = Curriculum_Vitae
-SRC := $(wildcard src/*.tex)
+OUT = cv
+PDF = cv.pdf
 
 # Flags used by pdflatex
-TFLAGS = -output-format pdf -output-directory $(DIR) -jobname $(OUT)
+TFLAGS = -output-format pdf -output-directory $(BIN) -jobname $(OUT)
 
 # Personal infos in the tex file
 ifndef EMAIL
@@ -25,15 +29,24 @@ ifndef BDAY
   BDAY = Some Date
 endif
 
-$(OUT) : $(DIR)
-	@echo "Adding personal infos"
-	sed -i 's/<E-Mail>/$(EMAIL)/g' $(firstword $(SRC))
-	sed -i 's/<Mobile Phone Number>/$(PHON)/g' $(firstword $(SRC))
-	sed -i 's/<Address>/$(ADDR)/g' $(firstword $(SRC))
-	sed -i 's/<Birthday>/$(BDAY)/g' $(firstword $(SRC))
+$(PDF) : dirs cv.tex
 	@echo "Compiling the source"
-	$(TEX) $(TFLAGS) $(SRC)
+	$(TEX) $(TFLAGS) $(SRC)/cv.tex
 
-$(DIR) :
-	@echo "Creating binary directory"
-	mkdir $(DIR)
+cv.tex : cv-template.tex
+	sed -e 's/<E-Mail>/$(EMAIL)/g'\
+		-e's/<Mobile Phone Number>/$(PHON)/g'\
+		-e 's/<Address>/$(ADDR)/g'\
+		-e 's/<Birthday>/$(BDAY)/g' $< > $(SRC)/$@
+
+dirs :
+	@echo "Creating the necessary folders"
+	mkdir -p $(BIN) $(SRC)
+
+.PHONY: clean cleanall
+
+clean :
+	$(RM) $(BIN)
+
+cleanall :
+	$(RM) $(BIN) $(SRC)
