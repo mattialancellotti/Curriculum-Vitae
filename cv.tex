@@ -1,0 +1,137 @@
+
+\documentclass[a4paper,12pt]{memoir} % Font and paper size
+
+\input{structure.tex} % Include the file specifying document layout and packages
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CONTACT INFORMATION 
+%----------------------------------------------------------------------------------------
+
+\userinformation{ % Set the content that goes into the sidebar of each page
+\begin{flushright}
+
+% Comment out this figure block if you don't want a photo
+\includegraphics[width=0.6\columnwidth]{<Image>}\\[\baselineskip] % Your photo
+\small Mattia Lancellotti \\ % Your name
+
+\Sep
+\textbf{Contatti}\\
+<Mobile Phone Number>\\ % Your phone number
+<E-Mail>\\
+
+\Sep % Some whitespace
+\textbf{Indirizzo} \\
+<Address>\\ % Address 2
+
+\Sep
+\textbf{Data di Nascita}\\
+<Birthday>\\
+
+\Sep
+\textbf{Lingue}\\
+Italiano, Inglese\\
+
+\vfill % Whitespace under this block to push it up under the photo
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\userinformation % Print your information in the left column
+
+\framebreak % End of the first column
+
+%----------------------------------------------------------------------------------------
+%	HEADING
+%----------------------------------------------------------------------------------------
+
+\cvheading{Lancellotti Mattia} % Large heading - your name
+
+\cvsubheading{Tecnico IT} % Subheading - your occupation/specialization
+
+\CVSection{Formazione}
+
+%------------------------------------------------
+
+\CVItem{Sett. 2016 - Giu. 2021, I.T.I.S. Kennedy}{Diploma in informatica}\\
+\CVItem{Certificazioni}
+{\begin{itemize}
+    \item Cisco \textit{IT Essentials}
+    \item Cisco \textit{Introduction to Networks}
+    \item Cisco \textit{Cybersecurity Essentials}
+\end{itemize}}
+
+\Sep % Extra whitespace after the end of a major section
+
+%----------------------------------------------------------------------------------------
+%	EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+\CVSection{Esperienza}
+
+%------------------------------------------------
+
+\CVItem{Genn. 2022 - Oggi, \textit{Stage come tecnico IT}, LTL S.p.a.}{
+\begin{itemize}
+	\item Assistenza SW e HW agli utenti;
+	\item Analisi e mappatura dell'infrastruttura IT;
+	\item Helpdesk di primo livello;
+	\item Mantenimento e aggiornamento dei DB vari.
+\end{itemize}
+}
+
+\Sep % Extra whitespace after the end of a major section
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+
+\CVSection{Software Development Skills}
+
+%------------------------------------------------
+
+\CVItem{Programmazione}
+{\begin{tabular}{p{0.2\textwidth} p{0.2\textwidth} p{0.2\textwidth}}
+\bluebullet C &  \bluebullet Shell/Bash & \bluebullet C\#\\
+\bluebullet PowerShell &  \bluebullet PHP & \bluebullet Lua\\
+\end{tabular}}
+
+%------------------------------------------------
+
+\CVItem{Software}
+{\begin{tabular}{p{0.2\textwidth} p{0.2\textwidth} p{0.2\textwidth}}
+ \bluebullet MySQL &  \bluebullet Linux & \bluebullet InfluxDB\\
+ \bluebullet Docker & \bluebullet Git & \bluebullet GNU Make\\
+\end{tabular}}
+
+%------------------------------------------------
+
+\CVItem{Progetti}
+{\begin{itemize}
+    \item \textbf{Stow (github.com/mattialancellotti/Stow):}\\
+    clone di GNU Stow per Windows scritto in Powershell
+\end{itemize}}
+
+%------------------------------------------------
+
+\Sep % Extra whitespace after the end of a major section
+
+%----------------------------------------------------------------------------------------
+%	Interessi
+%----------------------------------------------------------------------------------------
+
+\CVSection{Interessi}
+
+%------------------------------------------------
+
+\CVItem{Personali}{Leggere, programmare, videogiocare}
+
+%------------------------------------------------
+
+\vfill
+\scriptsize \textit{Autorizzo il trattamento dei miei dati personali ai sensi del Decreto Legislativo 101/2018 e dell'art. 13 GDPR (Regolamento UE 2016/679) ai fini della ricerca e selezione del personale.}
+%----------------------------------------------------------------------------------------
+
+\end{document}
