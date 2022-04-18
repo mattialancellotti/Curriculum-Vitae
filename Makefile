@@ -1,16 +1,15 @@
 RM = rm -rfv
 TEX = pdflatex
-BIN = bin
-SRC = src
 
 VPATH = template:$(SRC)
 
 # Output files in bin/
 OUT = cv
 PDF = cv.pdf
+SRC = cv.tex
 
 # Flags used by pdflatex
-TFLAGS = -output-format pdf -output-directory $(BIN) -jobname $(OUT)
+TFLAGS = -output-format pdf -no-shell-escape -output-directory ./ -jobname $(OUT)
 
 # Personal infos in the tex file
 ifndef EMAIL
@@ -29,24 +28,22 @@ ifndef BDAY
   BDAY = Some Date
 endif
 
-$(PDF) : dirs cv.tex
-	@echo "Compiling the source"
-	$(TEX) $(TFLAGS) $(SRC)/cv.tex
+ifndef IMAGE
+  IMAGE = photo.jpg
+endif
 
-cv.tex : cv-template.tex
+$(PDF) : temp.tex
+	@echo "Compiling the source"
+	$(TEX) $(TFLAGS) temp.tex
+
+temp.tex :
 	sed -e 's/<E-Mail>/$(EMAIL)/g'\
 		-e's/<Mobile Phone Number>/$(PHON)/g'\
 		-e 's/<Address>/$(ADDR)/g'\
-		-e 's/<Birthday>/$(BDAY)/g' $< > $(SRC)/$@
+		-e 's/<Image>/$(IMAGE)/g'\
+		-e 's/<Birthday>/$(BDAY)/g' $(SRC) > temp.tex
 
-dirs :
-	@echo "Creating the necessary folders"
-	mkdir -p $(BIN) $(SRC)
-
-.PHONY: clean cleanall
+.PHONY: clean
 
 clean :
-	$(RM) $(BIN)
-
-cleanall :
-	$(RM) $(BIN) $(SRC)
+	$(RM) $(PDF) temp.tex cv.log cv.aux
