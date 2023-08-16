@@ -1,3 +1,6 @@
+*.out
+*.pdf
+temp.tex
 *.aux
 *.log
 me.jpg
