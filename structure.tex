@@ -1,68 +1,97 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Original author:
-% Frits Wenneker (http://www.howtotex.com) with extensive modifications by 
-% Vel (vel@latextemplates.com)
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
-
-\usepackage{XCharter} % Use the Bitstream Charter font
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-
-\usepackage[top=1cm,left=1cm,right=1cm,bottom=1cm]{geometry} % Modify margins
-
+\usepackage[top=.7cm,left=.5cm,right=.5cm,bottom=1cm]{geometry} % Modify margins
 \usepackage{graphicx} % Required for figures
-
 \usepackage{flowfram} % Required for the multi-column layout
-
 \usepackage{url} % URLs
-
 \usepackage[usenames,dvipsnames]{xcolor} % Required for custom colours
-
 \usepackage{tikz} % Required for the horizontal rule
-
 \usepackage{enumitem} % Required for modifying lists
+\usepackage[medium,condensed]{roboto}
+\usepackage{xparse}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+
+\definecolor{background00}{RGB}{231,209,146}
+
+\definecolor{foreground00}{RGB}{69,6,6}
+\definecolor{foreground01}{RGB}{142,13,13}
+\definecolor{foreground02}{RGB}{102,102,102}
+
 \setlist{noitemsep,nolistsep} % Remove spacing within and around lists
 
 \setlength{\columnsep}{\baselineskip} % Set the spacing between columns
+\setlength{\fboxrule}{0pt}
 
 % Define the left frame (sidebar)
-\newflowframe{0.25\textwidth}{\textheight}{0pt}{0pt}[left]
+\newflowframe{0.26\textwidth}{\textheight}{0pt}{0pt}[left]
 \newlength{\LeftMainSep}
-\setlength{\LeftMainSep}{0.25\textwidth}
-\addtolength{\LeftMainSep}{1\columnsep}
- 
-% Small static frame for the vertical line
-\newstaticframe{1.5pt}{\textheight}{\LeftMainSep}{0pt}
- 
-% Content of the static frame with the vertical line
-\begin{staticcontents}{1}
-\hfill
-\tikz{\draw[loosely dotted,color=RoyalBlue,line width=1.5pt,yshift=0](0,0) -- (0,\textheight);}
-\hfill\mbox{}
-\end{staticcontents}
- 
+\setlength{\LeftMainSep}{0.26\textwidth}
+\addtolength{\LeftMainSep}{0\columnsep}
+
 % Define the right frame (main body)
-\addtolength{\LeftMainSep}{1.5pt}
-\addtolength{\LeftMainSep}{1\columnsep}
-\newflowframe{0.7\textwidth}{\textheight}{\LeftMainSep}{0pt}[main01]
+\addtolength{\LeftMainSep}{0pt}
+\addtolength{\LeftMainSep}{\columnsep}
+\newflowframe{0.72\textwidth}{\textheight}{\LeftMainSep}{0pt}[main01]
 
 \pagestyle{empty} % Disable all page numbering
 
 \setlength{\parindent}{0pt} % Stop paragraph indentation
 
-%----------------------------------------------------------------------------------------
-%	NEW COMMANDS
-%----------------------------------------------------------------------------------------
+%% Command: cvheader
+%% Parameters:
+%%      #1 => Image;
+%%      #2 => Additional information;
+\newcommand{\cvuserinfo}[2]{
+     \begin{center}
+          % Cropping the image to be a circle instead of a square
+          \begin{tikzpicture}
+               \clip (0,0) circle (1.7cm) node {
+                    \includegraphics[width=2.5cm]{#1}
+               };
+          \end{tikzpicture}\\[10pt]
+          % Adding the rest of the content
+          #2
+     \end{center}
+}
 
-\newcommand{\userinformation}[1]{\renewcommand{\userinformation}{#1}} % Define a new command for the CV user's information that goes into the left column
+%% Command: cvsection
+%% Description:
+%%      Draws a section much like the following one
+%%         SECTION TITLE
+%%      -------------------------------------------
+%%      Some really interesting content.......
+%% Parameters:
+%%      #1 => Section title;
+%%      #2 => Section content;
+\newcommand{\cvsection}[2]{
+     \begin{minipage}{\linewidth}
+          \textcolor{foreground00}{\Huge{\robotoBold{#1}}}
+          \vspace{5pt}
+          \color{background00}\hrule height 2pt
+          \vspace{10pt}
+          \color{foreground02}\robotoMedium{#2}
+     \end{minipage}
+}
+
+\newcommand{\cvpersonalcontact}[2]{
+     \begin{minipage}{10pt}
+          {\color{foreground01}\faIcon{#1}}
+     \end{minipage}
+     {\color{foreground02}\robotoMedium{#2}}\\[4pt]
+}
+
+\newcommand{\cvtitle}[3]{
+     \begin{minipage}[t][2.5cm][t]{\textwidth}
+          \begin{vplace}
+               \uppercase{\HUGE\robotoBold{#1}}\\[5pt]
+               \color{foreground01}\large\robotoMedium{#2}\\
+          \end{vplace}
+     \end{minipage}\\
+     \begin{minipage}[t][.75cm][b]{\textwidth}
+          #3
+     \end{minipage}
+}
 
 \newcommand{\cvheading}[1]{{\Huge\bfseries\color{RoyalBlue} #1} \par\vspace{.6\baselineskip}} % New command for the CV heading
 \newcommand{\cvsubheading}[1]{{\Large\bfseries #1} \bigbreak} % New command for the CV subheading

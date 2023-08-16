@@ -1,45 +1,19 @@
+\documentclass[a4paper,8pt]{memoir} % Font and paper size
 
-\documentclass[a4paper,12pt]{memoir} % Font and paper size
+\usepackage{hyperref}
 
 \input{structure.tex} % Include the file specifying document layout and packages
 
-%----------------------------------------------------------------------------------------
-%	NAME AND CONTACT INFORMATION 
-%----------------------------------------------------------------------------------------
-
-\userinformation{ % Set the content that goes into the sidebar of each page
-\begin{flushright}
-
-% Comment out this figure block if you don't want a photo
-\includegraphics[width=0.6\columnwidth]{<Image>}\\[\baselineskip] % Your photo
-\small Mattia Lancellotti \\ % Your name
-
-\Sep
-\textbf{Contatti}\\
-<Mobile Phone Number>\\ % Your phone number
-<E-Mail>\\
-
-\Sep % Some whitespace
-\textbf{Indirizzo} \\
-<Address>\\ % Address 2
-
-\Sep
-\textbf{Data di Nascita}\\
-<Birthday>\\
-
-\Sep
-\textbf{Lingue}\\
-Italiano, Inglese\\
-
-\vfill % Whitespace under this block to push it up under the photo
-\end{flushright}
-}
-
-%----------------------------------------------------------------------------------------
-
 \begin{document}
 
-\userinformation % Print your information in the left column
+\cvuserinfo{<Image>}{
+     \cvsection{CONTACTS}{
+          \cvpersonalcontact{at}{<E-Mail>}
+          \cvpersonalcontact{phone}{<Mobile Phone Number>}
+          \cvpersonalcontact{linkedin}{\href{<FullLinkedIn>}{<LinkedIn>}}
+          \cvpersonalcontact{github}{\href{<FullGitHub>}{<GitHub>}}
+     }
+}
 
 \framebreak % End of the first column
 
@@ -47,10 +21,15 @@ Italiano, Inglese\\
 %	HEADING
 %----------------------------------------------------------------------------------------
 
-\cvheading{Lancellotti Mattia} % Large heading - your name
+\cvtitle{Lancellotti Mattia}{.NET Software Developer}{
+     \cvpersonalcontact{map-marker}{<Address>}
+}\\[2.5pt]
 
-\cvsubheading{Tecnico IT} % Subheading - your occupation/specialization
-
+\cvsection{SUMMARY}{
+     Passionate Software Developer always ready to try new things and eager to
+     learn about new technologies. Currently employed as a .NET Software
+     Developer building Windows Desktop applications using the WPF framework.
+}
 \CVSection{Formazione}
 
 %------------------------------------------------
