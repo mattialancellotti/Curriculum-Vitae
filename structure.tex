@@ -16,7 +16,7 @@
 
 \definecolor{foreground00}{RGB}{69,6,6}
 \definecolor{foreground01}{RGB}{142,13,13}
-\definecolor{foreground02}{RGB}{102,102,102}
+\definecolor{foreground02}{RGB}{59,69,79}
 
 \setlist{noitemsep,nolistsep} % Remove spacing within and around lists
 
@@ -70,15 +70,15 @@
           \vspace{5pt}
           \color{background00}\hrule height 2pt
           \vspace{10pt}
-          \color{foreground02}\robotoMedium{#2}
-     \end{minipage}
+          \textcolor{foreground02}{\robotoRegular{#2}}
+     \end{minipage}\\[10pt]
 }
 
-\newcommand{\cvpersonalcontact}[2]{
+\newcommand{\cvpersonalcontact}[2]{%
      \begin{minipage}{10pt}
-          {\color{foreground01}\faIcon{#1}}
+          \textcolor{foreground01}{\faIcon{#1}}
      \end{minipage}
-     {\color{foreground02}\robotoMedium{#2}}\\[4pt]
+     \textcolor{foreground02}{\robotoRegular{#2}}\\[4pt]
 }
 
 \newcommand{\cvtitle}[3]{
