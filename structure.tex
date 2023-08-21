@@ -7,10 +7,11 @@
 \usepackage[usenames,dvipsnames]{xcolor} % Required for custom colours
 \usepackage{tikz} % Required for the horizontal rule
 \usepackage{enumitem} % Required for modifying lists
-\usepackage[]{roboto-serif}
+\usepackage{roboto-serif}
 \usepackage{xparse}
 \usepackage{fontawesome5}
 \usepackage{xcolor}
+\usepackage{tcolorbox}
 
 \definecolor{background00}{RGB}{231,209,146}
 
@@ -111,4 +112,14 @@
      \begin{tikzpicture}
           \draw[dotted] (0, 0) -- (\linewidth-\pgflinewidth, 0);
      \end{tikzpicture}\\[#1]
+}
+
+\newcommand{\cvskill}[1]{%
+     \skillbox{#1}
+     }
+
+\newtcbox{\skillbox}[1][foreground02]{%
+     on line, arc=7pt, colback=#1!10!white, colframe=#1!50!foreground02,
+     before upper={\rule[-1pt]{0pt}{10pt}}, boxrule=1pt, boxsep=1pt,
+     left=4pt, right=4pt, top=4pt, bottom=4pt, fontupper=\color{foreground02}
 }
