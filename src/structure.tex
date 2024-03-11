@@ -1,6 +1,6 @@
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-\usepackage[top=.7cm,left=.5cm,right=.5cm,bottom=1cm]{geometry} % Modify margins
+\usepackage[top=.0cm,left=.5cm,right=.5cm,bottom=1cm]{geometry} % Modify margins
 \usepackage{graphicx} % Required for figures
 \usepackage{flowfram} % Required for the multi-column layout
 \usepackage{url} % URLs
@@ -50,7 +50,7 @@
                \clip (0,0) circle (1.7cm) node {
                     \includegraphics[width=2.5cm]{#1}
                };
-          \end{tikzpicture}\\[10pt]
+          \end{tikzpicture}\\[7.5pt]
           % Adding the rest of the content
           #2
      \end{center}
@@ -82,6 +82,19 @@
      \textcolor{foreground02}{\robotoserifRegular{#2}}\\[4pt]
 }
 
+%% Command: cvtitle
+%% Description:
+%%      Prepares the heading of the CV by writing the name, the job title and
+%%      some information about the user.
+%%      Ex:
+%%          MARIO ROSSI
+%%          Software Developer
+%%              ..space..
+%%          <> Europe <> 01/01/2000
+%% Parameters:
+%%      #1 => Full name;
+%%      #2 => Job title;
+%%      #3 => Personal infos or notes to be put under job title;
 \newcommand{\cvtitle}[3]{
      \begin{minipage}[t][2.5cm][t]{\textwidth}
           \begin{vplace}
@@ -89,13 +102,15 @@
                \color{foreground01}\large\robotoserifMedium{#2}\\
           \end{vplace}
      \end{minipage}\\
-     \begin{minipage}[t][.75cm][b]{\textwidth}
-          #3
-     \end{minipage}
+     \foreach \info in {#3}{%
+          \begin{minipage}[t][10pt][t]{0.2\textwidth}
+               \info
+          \end{minipage}
+     }
 }
 
-\newcommand{\cvexperience}[5]{%
-     \begin{minipage}[t][][l]{0.7\textwidth}
+\newcommand{\cvexperience}[6]{%
+     \begin{minipage}[t][][l]{\textwidth}
           \robotoserifMedium{\Large\textcolor{black}{#1}}
      \end{minipage}\\[2pt]
      \textcolor{foreground01}{\robotoserifRegular{#2}}\\[5pt]
@@ -105,9 +120,22 @@
      \begin{minipage}[t][10pt][t]{0.5\textwidth}
           \cvpersonalcontact{map-marker}{#4}
      \end{minipage}\\[5pt]
-     #5
+     {#5}
+     \def\param{#6}
+     \ifx\param\empty
+     \vspace{-20pt}
+     \fi
+     \begin{flushleft}%
+          \foreach \skill in {#6}{ \cvskill{\skill} }
+     \end{flushleft}
+     \vspace{-10pt}
 }
 
+%% Command: cvdottedsep
+%% Description:
+%%      Draws a separator line using small dots.
+%% Parameters:
+%%      #1 => Amount of space to be put after the drawn line;
 \newcommand{\cvdottedsep}[1]{
      \begin{tikzpicture}
           \draw[dotted] (0, 0) -- (\linewidth-\pgflinewidth, 0);
@@ -118,8 +146,9 @@
      \skillbox{#1}
      }
 
-\newtcbox{\skillbox}[1][foreground02]{%
-     on line, arc=7pt, colback=#1!10!white, colframe=#1!50!foreground02,
-     before upper={\rule[-1pt]{0pt}{10pt}}, boxrule=1pt, boxsep=1pt,
-     left=4pt, right=4pt, top=4pt, bottom=4pt, fontupper=\color{foreground02}
+\newtcbox{\skillbox}[1][foreground01]{%
+     boxrule=-1pt, boxsep=0pt, height=10pt,
+     top=3pt, bottom=3pt, right=4pt, left=4pt,
+     colback=#1!25!white, fontupper=\footnotesize\color{foreground01},
+     nobeforeafter
 }

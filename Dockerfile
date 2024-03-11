@@ -4,7 +4,6 @@ ENV PATH=/usr/share/texlive/bin/x86_64-linuxmusl:$PATH
 RUN mkdir ~/texmf
 
 COPY texlive-profile.txt /temp/
-COPY src/* cvtex/src/
 
 RUN apk update
 RUN apk --no-cache add \
@@ -35,10 +34,18 @@ RUN tlmgr install \
                fontawesome5 \
                tcolorbox
 
-WORKDIR cvtex/src/
-RUN make
+COPY src/* /cvtex/src/
+
+WORKDIR /cvtex/src/
+RUN make -B \
+          EMAIL="E-Mail" \
+          PHON="Phone Number" \
+          ADDR="Address" \
+          IMAGE="me.jpg" \
+          LINKEDIN="LinkedIn name" \
+          FULL_LINKEDIN="LinkedIn full link" \
+          GITHUB="GtiHub name" \
+          FULL_GITHUB="GitHub full link"
 
 FROM scratch
-COPY --from=0 cvtex/src/cv.pdf .
-
-ENTRYPOINT [ "/bin/sh" ]
+COPY --from=0 /cvtex/src/cv.pdf .
